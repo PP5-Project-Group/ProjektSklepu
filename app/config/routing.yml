@@ -1,0 +1,5 @@
+bmw_main:
+    resource: "@BmwMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
