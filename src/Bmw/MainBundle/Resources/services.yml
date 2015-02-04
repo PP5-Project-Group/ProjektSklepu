@@ -1,0 +1,9 @@
+services:
+
+
+    payment.handler:
+        class: Agencik\DemoBundle\Payment\PaymentHandler
+        arguments:
+            - %dotpay_id%
+            - %dotpay_pin%
+            

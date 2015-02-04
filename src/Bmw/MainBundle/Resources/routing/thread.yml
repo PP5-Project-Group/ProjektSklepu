@@ -1,0 +1,37 @@
+thread:
+    path:     /
+    defaults: { _controller: "AgencikDemoBundle:Thread:index" }
+
+thread_show:
+    path:     /{id}/show
+    defaults:
+        _controller: "AgencikDemoBundle:Thread:show"
+    requirements:
+        id: \d+	
+
+thread_show_by_slug:
+    path:     /{id}/show
+    defaults: { _controller: "AgencikDemoBundle:Thread:show" }
+
+thread_new:
+    path:     /new
+    defaults: { _controller: "AgencikDemoBundle:Thread:new" }
+
+thread_create:
+    path:     /create
+    defaults: { _controller: "AgencikDemoBundle:Thread:create" }
+    requirements: { _method: post }
+
+thread_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AgencikDemoBundle:Thread:edit" }
+
+thread_update:
+    path:     /{id}/update
+    defaults: { _controller: "AgencikDemoBundle:Thread:update" }
+    requirements: { _method: post|put }
+
+thread_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AgencikDemoBundle:Thread:delete" }
+    requirements: { _method: post|delete }
