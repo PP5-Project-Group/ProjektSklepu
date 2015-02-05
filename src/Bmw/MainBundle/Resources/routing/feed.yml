@@ -1,9 +1,0 @@
-agencik_demo_feed_create:
-    path: /new
-    defaults: 
-        _controller: AgencikDemoBundle:Feed:create
-		
-agencik_demo_feed_index:
-    path: /new
-    defaults: 
-        _controller: AgencikDemoBundle:Feed:index

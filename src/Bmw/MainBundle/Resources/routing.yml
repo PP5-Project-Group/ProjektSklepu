@@ -1,8 +1,0 @@
-bmw_main_payment_pay:
-    path: /payment/pay
-    defaults: 
-        _controller: BmwMainBundle:Payment:pay
-bmw_main_payment_handle:
-    path: /payment/handle
-    defaults:
-        _controller: BmwMainBundle:Payment:receivePayment
