@@ -51,8 +51,10 @@ FOREIGN KEY (user_id) references User (user_id)
 );
 
 CREATE TABLE Morder_has_Movie (
+morder_has_movie_id int8 auto_increment,
 order_id int8 NOT NULL,
 movie_id int8 NOT NULL,
+PRIMARY KEY(morder_has_movie_id),
 FOREIGN KEY (movie_id) references Movie (movie_id),
 FOREIGN KEY (order_id) references Morder (order_id)
 );

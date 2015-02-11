@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Bmw\MainBundle\Entity\Review" table="Review">
+    <indexes>
+      <index name="movie_id" columns="movie_id"/>
+      <index name="user_id" columns="user_id"/>
+    </indexes>
+    <id name="reviewId" type="bigint" column="review_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="reviewText" type="string" column="review_text" length="512" nullable="false"/>
+    <field name="rate" type="smallint" column="rate" nullable="true"/>
+    <many-to-one field="user" target-entity="User">
+      <join-columns>
+        <join-column name="user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="movie" target-entity="Movie">
+      <join-columns>
+        <join-column name="movie_id" referenced-column-name="movie_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

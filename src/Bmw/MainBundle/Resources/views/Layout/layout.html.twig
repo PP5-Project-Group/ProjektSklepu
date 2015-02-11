@@ -42,11 +42,19 @@
     <div class="container">
 
         <div class="row">
-     
+     		<div class="col-md-3">
+               {% block login %}
+                {% include 'BmwMainBundle:Layout:login.html.twig' %}
+               {% endblock %}
+               </div>
+                <div class="col-md-9">
+
+                <div class="row carousel-holder">
                 {% block content %}
                 
                 {% endblock %}
-
+			</div>
+			</div>
         </div>
 
     </div>

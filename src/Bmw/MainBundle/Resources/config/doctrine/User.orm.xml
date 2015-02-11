@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Bmw\MainBundle\Entity\User" table="User">
+    <id name="userId" type="bigint" column="user_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="login" type="string" column="login" length="30" nullable="false"/>
+    <field name="userPassword" type="string" column="user_password" length="60" nullable="false"/>
+    <field name="mail" type="string" column="mail" length="30" nullable="false"/>
+    <field name="telephonNumber" type="string" column="telephon_number" length="16" nullable="false"/>
+    <field name="role" type="smallint" column="role" nullable="false"/>
+    <field name="itemStatus" type="smallint" column="item_status" nullable="true"/>
+  </entity>
+</doctrine-mapping>

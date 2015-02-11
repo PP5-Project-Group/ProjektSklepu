@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Bmw\MainBundle\Entity\Movie" table="Movie">
+    <indexes>
+      <index name="category_id" columns="category_id"/>
+    </indexes>
+    <id name="movieId" type="bigint" column="movie_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="30" nullable="false"/>
+    <field name="price" type="decimal" column="price" precision="9" scale="2" nullable="false"/>
+    <field name="description" type="string" column="description" length="256" nullable="false"/>
+    <field name="imgUrl" type="string" column="img_url" length="124" nullable="true"/>
+    <field name="actors" type="string" column="actors" length="124" nullable="true"/>
+    <field name="itemStatus" type="smallint" column="item_status" nullable="true"/>
+    <many-to-one field="category" target-entity="Category">
+      <join-columns>
+        <join-column name="category_id" referenced-column-name="category_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

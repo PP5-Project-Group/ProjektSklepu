@@ -22,4 +22,17 @@ class DashBoardController extends Controller
 		
 		
     }
+	
+	public function positionAction(){
+		
+		return array(
+			'name' => $movieName,
+			'price' => $moviePrice,
+			'img' => $movieImg,
+			'note' => $movieNote,
+			'reviews' => $reviewsNumber,
+			'position' => $moviePostion
+		);
+		
+	}
 }
