@@ -15,24 +15,14 @@ class DashBoardController extends Controller
    
     public function indexAction()
     {
-        
-        return array(
-				'name' => "ELO",
-			);
+     
+		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
 		
+		$movie = $repository->findAll();
 		
-    }
-	
-	public function positionAction(){
-		
-		return array(
-			'name' => $movieName,
-			'price' => $moviePrice,
-			'img' => $movieImg,
-			'note' => $movieNote,
-			'reviews' => $reviewsNumber,
-			'position' => $moviePostion
-		);
+		return $this->render('BmwMainBundle:DashBoard:index.html.twig', array(
+	    	'movie' => $movie
+	    	));
 		
 	}
 }

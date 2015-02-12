@@ -9,25 +9,25 @@
   </div>
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-      <li ><a href="/~s174906/app_dev.php/">Dashboard</a></li>
+      <li ><a href="{{ app.request.uriForPath('/') }}">Dashboard</a></li>
       
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filmy <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Akcji</a></li>
-          <li><a href="#">Komedia</a></li>
-          <li><a href="#">Horror</a></li>
-          <li><a href="#">Fantasy</a></li>
-          <li><a href="#">Wszystkie</a></li>
+          <li><a href="{{ app.request.uriForPath('/movies/action') }}">Akcji</a></li>
+          <li><a href="{{ app.request.uriForPath('/movies/comedy') }}">Komedia</a></li>
+          <li><a href="{{ app.request.uriForPath('/movies/horror') }}">Horror</a></li>
+          <li><a href="{{ app.request.uriForPath('/movies/scifiction') }}">Fantasy</a></li>
+          <li><a href="{{ app.request.uriForPath('/movies/all') }}">Wszystkie</a></li>
  
         </ul>
       </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Zamówienia<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/~s174906/app_dev.php/cart">Koszyk</a></li>
-          <li><a href="/~s174906/app_dev.php/history">Hitoria</a></li>
-          <li><a href="/~s174906/app_dev.php/payment">Płatności</a></li>
+          <li><a href="{{ app.request.uriForPath('/cart') }}">Koszyk</a></li>
+          <li><a href="{{ app.request.uriForPath('/history') }}">Hitoria</a></li>
+          <li><a href="{{ app.request.uriForPath('/payment') }}">Płatności</a></li>
  
         </ul>
       </li>
