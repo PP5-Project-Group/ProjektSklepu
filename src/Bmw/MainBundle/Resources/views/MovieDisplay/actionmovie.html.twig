@@ -1,0 +1,42 @@
+{% extends "BmwMainBundle:Layout:layout.html.twig" %}
+{% block title %}Filmy akcji{% endblock %}
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+                               
+				<ol class="breadcrumb">
+  					<center>Filmy akcji</center>
+				</ol>
+               
+                <div class="row">   
+                 {% for movies in movie %}                 
+                    <div class="col-sm-4 col-lg-4 col-md-8">
+                        <div class="thumbnail">
+                            <img src="{{movies.imgUrl}}" width="203" height="301" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">{{ movies.price}}$</h4>
+                                <h4><a href="#">{{ movies.title }}</a>
+                                </h4>
+                                <p>{{movies.description}}</p>
+                            </div>
+                            <div class="ratings">
+                                                        
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% if loop.index is divisibleby(3) %}
+                        </div><div class="row">
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+{% endblock %}
