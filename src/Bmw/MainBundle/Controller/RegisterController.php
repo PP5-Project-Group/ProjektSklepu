@@ -1,11 +1,13 @@
 <?php
 namespace Bmw\MainBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Bmw\MainBundle\Form\UserType;
 use Bmw\MainBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+
 class RegisterController extends Controller
 {
     /**
@@ -17,6 +19,8 @@ class RegisterController extends Controller
     {
         
 		$user = new User();
+		
+		
 		
     	$form = $this->createForm(new UserType(), $user);
 		$form->handleRequest($request);
@@ -30,7 +34,8 @@ class RegisterController extends Controller
    			 $em->persist($user);
    			 $em->flush();
 			 //powinien zwrócić komunikat o sukcesie operacji
-   			 //return $this->redirect($this->generateUrl('user_success'));
+   			 //return $this->redirect($this->generateUrl('user'), 302);
+			 
 		}
 		
   		
