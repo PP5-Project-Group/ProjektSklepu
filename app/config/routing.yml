@@ -11,3 +11,8 @@ movie_show:
 movie_select:
      path:   /movies/{type}
      defaults:  { _controller: BmwMainBundle:DashBoard:select }
+
+
+user:
+    path:    /user
+    defaults:  { _controller: BmwMainBundle:User:user }

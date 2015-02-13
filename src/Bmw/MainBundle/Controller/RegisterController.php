@@ -33,8 +33,8 @@ class RegisterController extends Controller
    			 $em = $this->getDoctrine()->getManager();
    			 $em->persist($user);
    			 $em->flush();
-			 //powinien zwrócić komunikat o sukcesie operacji
-   			 //return $this->redirect($this->generateUrl('user'), 302);
+			 
+   			 return $this->redirect($this->generateUrl('user'), 301);
 			 
 		}
 		
