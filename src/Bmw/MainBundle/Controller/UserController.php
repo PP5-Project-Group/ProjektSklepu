@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         
         return array(
-				'name' => "ELO",
+				'name1' => "ELO",
 			);
 		
     }

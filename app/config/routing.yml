@@ -12,7 +12,15 @@ movie_select:
      path:   /movies/{type}
      defaults:  { _controller: BmwMainBundle:DashBoard:select }
 
-
 user:
     path:    /user
     defaults:  { _controller: BmwMainBundle:User:user }
+    
+login:
+    path:   /login
+    defaults: { _controller: BmwMainBundle:Login:login}
+
+logout:
+     path:   /logout
+     defaults: { _controller: BmwMainBundle:Login:logout}
+     
