@@ -15,7 +15,7 @@ class DashBoardController extends Controller
    
     public function indexAction()
     {
-     	$category = '';
+     	$category = 'Most Popular';
 		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
 		
 		$movie = $repository->findByPrice(6.99);
@@ -64,9 +64,16 @@ class DashBoardController extends Controller
 
 	public function movieAction($page)
 	{
+		$page1=0;
 		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
 		
-		$page1 = $page+8;
+		if ($page <= 8)
+		{
+			$page1 = $page+8;	
+		} else {
+			$page1=$page;
+		}
+				
 		$movie = $repository->findOneBymovieId($page1);
 		//exit(\Doctrine\Common\Util\Debug::dump($movie));
 		return $this->render('BmwMainBundle:DashBoard:singleindex.html.twig', array(
