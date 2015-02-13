@@ -3,3 +3,11 @@ bmw_main:
     type:     annotation
     prefix:   /
 
+movie_show:
+     path:   /movie/{page}
+     defaults:  { _controller: BmwMainBundle:DashBoard:movie }
+
+
+movie_select:
+     path:   /movies/{type}
+     defaults:  { _controller: BmwMainBundle:DashBoard:select }
