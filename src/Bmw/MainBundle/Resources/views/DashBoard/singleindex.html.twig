@@ -1,0 +1,41 @@
+{% extends "BmwMainBundle:Layout:layout.html.twig" %}
+{% block title %}{{movie.title}}{% endblock %}
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+                               
+				<ol class="breadcrumb">
+  					<center>{{movie.title}}</center>
+				</ol>
+              
+                <div class="row">   
+                               
+                    <div class="col-sm-4 col-lg-12 col-md-8">
+                        <div class="thumbnail">
+                            <img src="{{movie.imgUrl}}" width="203" height="301" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">{{ movie.price}}$</h4>
+                                <h4><a href="#">{{ movie.title }}</a>
+                                </h4>
+                                <p>{{movie.description}}</p>
+                                <p>Aktorzy: {{movie.actors}}</p>
+                                <button type="button" class="btn btn-info">Dodaj recenzje</button>
+                                <button type="button" class="btn btn-success">Wypożycz</button>
+                            </div>
+                            <div class="ratings">
+                                                        
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+{% endblock %}

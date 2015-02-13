@@ -41,6 +41,7 @@ class RegisterController extends Controller
   		
         return array(
 				'form' => $form->createView(),
+        'title' => 'Rejestracja'
 			);
 		
     }
