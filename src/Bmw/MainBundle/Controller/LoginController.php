@@ -34,10 +34,10 @@ class LoginController extends Controller {
 					$login -> setPassword($password);
 					$session -> set('login', $login);
 				}
-				return $this -> render('BmwMainBundle:Login:loguser.html.twig', array('name' => $user -> getLogin()));
+				return $this -> render('BmwMainBundle:Login:welcome.html.twig', array('name' => $user -> getLogin()));
 			} else {
 
-				return $this -> render('BmwMainBundle:Login:login.html.twig', array('name' => "LOGIN ERROR"));
+				//return $this -> render('BmwMainBundle:Login:login.html.twig', array('name' => "LOGIN ERROR"));
 
 			}
 		} else {
@@ -47,10 +47,10 @@ class LoginController extends Controller {
 				$password = $login -> getPassword();
 				$user = $repository -> findOneBy(array('login' => $username, 'userPassword' => $password));
 				if ($user) {
-					return $this -> render('BmwMainBundle:Login:loguser.html.twig', array('name' => $user -> getLogin()));
+					return $this -> render('BmwMainBundle:Login:wlcome.html.twig', array('name' => $user -> getLogin()));
 				}
 			}
-			return $this -> render('BmwMainBundle:Login:login.html.twig');
+			return $this -> render('BmwMainBundle:Login:welcome.html.twig');
 		}
 
 		//return $this -> render('BmwMainBundle:Login:login.html.twig');
@@ -60,7 +60,7 @@ class LoginController extends Controller {
 	public function logoutAction(Request $request) {
 		$session = $this -> getRequest() -> getSession();
 		$session -> clear();
-		return $this -> render('BmwMainBundle:Login:login.html.twig');
+		return $this -> render('BmwMainBundle:Login:goodbye.html.twig');
 	}
 
 }

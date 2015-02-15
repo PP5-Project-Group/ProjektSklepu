@@ -1,4 +1,5 @@
 /web/bundles/framework
+/web/bundles/bmwmain
 /web/bundles/sensioditribution
 /app/bootstrap.php.cache
 /app/cache/*

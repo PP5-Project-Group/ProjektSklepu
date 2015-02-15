@@ -64,21 +64,17 @@ class DashBoardController extends Controller
 
 	public function movieAction($page)
 	{
-		$page1=0;
+	
 		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
 		
-		if ($page <= 8)
-		{
-			$page1 = $page+8;	
-		} else {
-			$page1=$page;
-		}
+
 				
-		$movie = $repository->findOneBymovieId($page1);
+		$movie = $repository->findOneBymovieId($page);
 		//exit(\Doctrine\Common\Util\Debug::dump($movie));
 		return $this->render('BmwMainBundle:DashBoard:singleindex.html.twig', array(
 			'title' => 'Wybrany film',
-			'movie' => $movie
+			'movie' => $movie,
+			'page' => $page
 			));
 	}
 }

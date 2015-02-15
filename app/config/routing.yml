@@ -24,3 +24,7 @@ logout:
      path:   /logout
      defaults: { _controller: BmwMainBundle:Login:logout}
      
+add_product_to_cart:
+     path:   /movie/{page}
+     defaults:  { _controller: BmwMainBundle:Cart:add}
+     

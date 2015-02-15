@@ -23,7 +23,7 @@
                                 <p>{{movie.description}}</p>
                                 <p>Aktorzy: {{movie.actors}}</p>
                                 <button type="button" class="btn btn-info">Dodaj recenzje</button>
-                                <button type="button" class="btn btn-success">Wypożycz</button>
+                                <a class="btn btn-success href="{{ path('add_product_to_cart', {'page': page}) }}">Dodaj do koszyka</a>
                             </div>
                             <div class="ratings">
                                                         
