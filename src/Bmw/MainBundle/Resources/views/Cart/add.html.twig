@@ -1,5 +1,8 @@
 {% extends "BmwMainBundle:Layout:layout.html.twig" %}
 {% block title %}Cart{% endblock %}
 {% block content %}
-
+<center>
+<h1>Dodano film do koszyka</h1>
+<h1>Możesz obejrzeć swoje zamówienie <a href="{{ app.request.uriForPath('/cart') }}">tutaj</a></h1>
+</center>
 {% endblock %}
