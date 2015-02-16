@@ -66,7 +66,9 @@ class DashBoardController extends Controller
 	{
 	
 		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
-		
+		$session = $this -> getRequest() -> getSession();
+		$session -> remove('movieId');
+		$session ->set('movieId', $page);
 
 				
 		$movie = $repository->findOneBymovieId($page);

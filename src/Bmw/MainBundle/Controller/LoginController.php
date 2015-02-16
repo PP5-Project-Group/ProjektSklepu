@@ -19,7 +19,7 @@ class LoginController extends Controller {
 		$session = $this -> getRequest() -> getSession();
 		if ($request -> getMethod() == 'POST') {
 
-			$session -> clear();
+			$session -> remove('login');
 
 			$username = $request -> get('username');
 			$password = $request -> get('password');
@@ -33,6 +33,7 @@ class LoginController extends Controller {
 					$login -> setUsername($username);
 					$login -> setPassword($password);
 					$session -> set('login', $login);
+					
 				}
 				return $this -> render('BmwMainBundle:Login:welcome.html.twig', array('name' => $user -> getLogin()));
 			} else {
@@ -59,7 +60,7 @@ class LoginController extends Controller {
 	
 	public function logoutAction(Request $request) {
 		$session = $this -> getRequest() -> getSession();
-		$session -> clear();
+		$session -> clear(); //czysci koszyk
 		return $this -> render('BmwMainBundle:Login:goodbye.html.twig');
 	}
 
