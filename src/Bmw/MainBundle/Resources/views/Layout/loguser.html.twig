@@ -1,12 +1,13 @@
 
             {% block login %}
-             
+             {% set login = app.session.get('login') %}
               <div class="panel panel-default ">
-                <div class="panel-heading"> <strong class="">Cart</strong>
-
+                <div class="panel-heading"> <strong class="">{{login.username}}-Panel</strong>
+				
                 </div>
                 <div class="panel-body">
-                    
+                 
+                   
                 </div>
 					<div class="row">
 					
