@@ -22,7 +22,10 @@
                                 </h4>
                                 <p>{{movie.description}}</p>
                                 <p>Aktorzy: {{movie.actors}}</p>
+                                {% set login = app.session.get('login') %}
+                                {% if login %}
                                 <button type="button" class="btn btn-info">Dodaj recenzje</button>
+                                {% endif %}
                                 <a class="btn btn-success" href="{{ path('add_product_to_cart') }}">Dodaj do koszyka</a>
                             </div>
                             <div class="ratings">
