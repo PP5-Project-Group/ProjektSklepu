@@ -6,11 +6,17 @@
 
         <div class="row">
             <div class="col-md-8">
-                               
+                      {{user}} 
 				<ol class="breadcrumb">
   					<center>{{movie.title}}</center>
 				</ol>
-              
+                 {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{msg}}
+                {% endfor %}
+            </div>
+        {% endif %}
                 <div class="row">   
                                
                     <div class="col-sm-4 col-lg-12 col-md-8">
@@ -22,8 +28,11 @@
                                 </h4>
                                 <p>{{movie.description}}</p>
                                 <p>Aktorzy: {{movie.actors}}</p>
-                                <button type="button" class="btn btn-info">Dodaj recenzje</button>
-                                <a class="btn btn-success" href="{{ path('add_product_to_cart') }}">Dodaj do koszyka</a>
+                                <span class="butcent"><button type="button" class="btn btn-success">Wypożycz</button></span>
+                                
+
+                                <span class="but_rec"><a href="{{ app.request.uriForPath('/movie') }}/{{movie.movieId}}/review"><button type="button" class="btn btn-info">Dodaj recenzje</button></a></span>
+                                
                             </div>
                             <div class="ratings">
                                                         

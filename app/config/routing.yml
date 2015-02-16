@@ -15,7 +15,7 @@ movie_select:
 user:
     path:    /user
     defaults:  { _controller: BmwMainBundle:User:user }
-    
+
 login:
     path:   /login
     defaults: { _controller: BmwMainBundle:Login:login}
@@ -23,12 +23,8 @@ login:
 logout:
      path:   /logout
      defaults: { _controller: BmwMainBundle:Login:logout}
-     
-add_product_to_cart:
-     path:   /cart/add
-     defaults:  { _controller: BmwMainBundle:Cart:add}
-     
-remove_product_from_cart:
-     path:  /cart/remove
-     defaults:  { _controller: BmwMainBundle:Cart:remove}
-     
+
+movie_review:
+    path: /movie/{page}/review/
+    defaults: { _controller: BmwMainBundle:AddReview:addreview }
+
