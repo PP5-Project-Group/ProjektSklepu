@@ -1,0 +1,39 @@
+{% extends "BmwMainBundle:Layout:layout.html.twig" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+                               
+				<ol class="breadcrumb">
+                   
+  					<center>Dodaj recenzje do filmu: {{movie.title}}</center>
+				</ol>
+            {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{msg}}
+                {% endfor %}
+            </div>
+        {% endif %}
+             
+                <div class="row">                                
+                    <div class="col-sm-4 col-lg-12 col-md-8">
+                        <div class="thumbnail">
+                           <img src="{{movie.imgUrl}}" width="203" height="301" alt="">
+                        </div>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                        <textarea class="form-control" rows="3"></textarea>
+                        <span class="but_rec"><button type="button" class="btn btn-info">Dodaj recenzje</button></span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+{% endblock %}
