@@ -18,14 +18,40 @@ class DashBoardController extends Controller
     {
     	     	
      	$category = 'Most Popular';
-		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
-		
+		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');		
 		$movie = $repository->findByPrice(6.99);
+
+		// $repository = $this->getDoctrine()->getRepository('BmwMainBundle:Review');
+		
+		  
+  
+	      $stmt = $this->getDoctrine()->getManager()  
+	                   ->getConnection()  
+	                   ->prepare(
+	                   	'SELECT
+	                   	 title, price, img_url, description, Movie.movie_id, SUM( Review.movie_id) Suma, COUNT(title) Count 
+	                   	FROM 
+	                   	 Review LEFT JOIN Movie 
+	                   	ON
+	                   	 Review.movie_id = Movie.movie_id
+	                   	 GROUP BY 
+	                   	title
+	                   	 ORDER BY
+	                   	Count DESC
+	                   	LIMIT 3'
+	                   	);  
+	      
+	      $stmt->execute();  
+	      $mostPopular =  $stmt->fetchAll();  
+	 
+	 // exit(\Doctrine\Common\Util\Debug::dump($mostPopular));
 
 		return $this->render('BmwMainBundle:DashBoard:index.html.twig', array(
 	    	'movie' => $movie,
 	    	'category' => $category,
-	    	'title' => 'DashBoard'
+	    	'title' => 'DashBoard',
+	    	'popular' => $mostPopular,
+	    	'ordered' => 'Most Ordered'
 	    	));
 		
 		

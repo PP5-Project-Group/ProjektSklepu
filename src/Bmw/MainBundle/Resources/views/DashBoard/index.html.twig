@@ -10,7 +10,35 @@
 				<ol class="breadcrumb">
   					<center>{{category}}</center>
 				</ol>
-              
+                   
+                <div class="row">   
+                 {% set zmienna = 8%}
+                 {% for pop in popular %}                 
+                    <div class="col-sm-4 col-lg-4 col-md-8">
+                        <div class="thumbnail">
+                           
+                            <a href="{{ app.request.uriForPath('/movie/') }}{{pop.movie_id}}"><img src="{{pop.img_url}}" width="203" height="301" alt=""></a>
+                            <div class="caption">
+                                <h4 class="pull-right">{{ pop.price}}$</h4>
+                                <h4><a href="{{ app.request.uriForPath('/movie/') }}{{pop.movie_id}}">{{ pop.title }}</a>
+                                </h4>
+                                <p>{{pop.description}}</p>
+                            </div>
+                            <div class="ratings">
+                            </div>
+                        </div>
+
+                    </div>
+                    {% if loop.index is divisibleby(3) %}
+                        </div><div class="row">
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+                <ol class="breadcrumb">
+                    <center>{{ordered}}</center>
+                </ol>
+
                 <div class="row">   
                  {% set zmienna = 8%}
                  {% for movies in movie %}                 
@@ -25,8 +53,6 @@
                                 <p>{{movies.description}}</p>
                             </div>
                             <div class="ratings">
-                                                        
-                                </p>
                             </div>
                         </div>
 
