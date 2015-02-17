@@ -19,18 +19,39 @@ class AddReviewController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
   		$movie_id = $em->getRepository('BmwMainBundle:Movie')->find($page);
 		
+  		$session = $this -> getRequest() -> getSession();
+	 	$login = $session->get('login');
+	 	$username = $login -> getUsername();
+
+
+	 	$em = $this->getDoctrine()->getManager();
+
+		$query = $em->createQuery(
+		'SELECT u.userId 
+		FROM BmwMainBundle:User u
+		WHERE u.login  = :login
+		'
+		)->setParameter('login', $username)
+		->getScalarResult();
+
+
+		$ids = array_column($query, "userId");
+
+		$userLp = $ids[0];
+
+		 // exit(\Doctrine\Common\Util\Debug::dump($ids));
+		
+	 	 $user_id = $em->getRepository('BmwMainBundle:User')->find($userLp);
+// 
+  		  
+	 	
 		$review = new Review();
 		$review->setMovie($movie_id);
-
+		$review->setUser($user_id);
+		 // exit(\Doctrine\Common\Util\Debug::dump($user_id));
 		$form = $this->createFormBuilder($review)
 			->add('reviewText', 'text')
 			->add('rate', 'integer')
-			->add('User', 'entity', array(
-				'class' => 'BmwMainBundle:User',
-				'expanded' => false,
-				'multiple' =>false,
-				'property' => 'login'
-				))
 			->add('save', 'submit', array('label' => 'Wyślij recenzje'))
 			->getForm();
 
@@ -45,8 +66,8 @@ class AddReviewController extends Controller
    			
    			 $request->getSession()->getFlashBag()
    			 ->add('success', 'Recenzja została dodana!!');
-		}
 
+   			}
 		$user = $this->get('security.context')->getToken()->getUser();
 		$session = $request -> getSession(); 
 
