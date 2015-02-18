@@ -35,7 +35,7 @@ class LoginController extends Controller {
 					$session -> set('login', $login);
 					
 				}
-				return $this -> render('BmwMainBundle:Login:welcome.html.twig', array('name' => $user -> getLogin()));
+				return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('name' => $user -> getLogin()));
 			} else {
 
 				//return $this -> render('BmwMainBundle:Login:login.html.twig', array('name' => "LOGIN ERROR"));

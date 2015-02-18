@@ -1,5 +1,50 @@
 {% extends "BmwMainBundle:Layout:layout.html.twig" %}
 {% block title %}{{title}}{% endblock %}
 {% block content %}
-
+        {% if app.session.flashBag.has('reg') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('reg') %}
+                    {{msg}}
+                {% endfor %}
+            </div>
+        {% endif %}
+<table id="table-style" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th data-field="id" class="col-md-1">ID</th>
+        <th data-field="name" class="col-md-2">
+            <i class="glyphicon glyphicon-star"></i>
+            Order Data
+        </th>
+        <th data-field="price" class="col-md-2">
+            <i class="glyphicon glyphicon-heart"></i>
+            Order Price
+        </th>
+         <th data-field="" class="col-md-2">
+            <i class="glyphicon glyphicon-heart"></i>
+            Order Status
+        </th>
+        <th data-field="price" class="col-md-4">
+            <i class="glyphicon glyphicon-heart"></i>
+            Movies
+        </th>
+        <th data-field="price" class="col-md-4">
+            <i class="glyphicon glyphicon-heart"></i>
+            
+        </th>
+    </tr>   
+    </thead>           
+    {% for ord in orders %} 
+     <tr>
+                        <td>1</td>
+                        <td>{{ord.order_data}}</td>
+                        <td>{{ord.movie_price}}</td>
+                        <td>{{ord.order_status}}</td>
+                        <td>{{ord.title}}</td>
+                        <td>akcja</td>
+                    </tr>
+                    {% endfor %}
+    
+</table>
+<a href="{{path('order_it')}}">sdfsdfsdfsdfsdf </a>
 {%endblock %}
