@@ -11,15 +11,71 @@ class PaymentController extends Controller
 {
 	public function payAction()
 	{
+		$session = $this -> getRequest() -> getSession();
+	 	$login = $session->get('login');
+	 	$cart = $session->get('cart');
+
+
+	 	
+
+	 	$username = $login -> getUsername();
+
+	 	$em = $this->getDoctrine()->getManager();
+	 	//wyciÄ…ganie loginu, emaila, telefonu
+		$query = $em->createQuery(
+		'SELECT u.login, u.mail, u.telephonNumber
+		FROM BmwMainBundle:User u
+		WHERE u.login  = :login
+		'
+		)->setParameter('login', $username)
+		->getScalarResult();
+
+		// wyciaganie kosztu filmu
+		$query2 = $em->createQuery(
+		'SELECT u.price, u.title
+		FROM BmwMainBundle:Movie u
+		WHERE u.movieId  = :id_movie
+		'
+		)->setParameter('id_movie', $cart)
+		->getScalarResult();
+
+		$costTab = array_column($query2, "price");
+		$titleTab = array_column($query2, "title");
+		$cost = $costTab[0];
+		$title = $titleTab[0];
+
+		// exit(\Doctrine\Common\Util\Debug::dump($title));
+
+		$log = array_column($query, "login");
+		$email = array_column($query, "mail");
+		$tel = array_column($query, "telephonNumber");
+		
+		$userFromSession = $log[0];
+		$mailFromSession = $email[0];
+		$telFromSession = $tel[0];
+		
+
+		// exit(\Doctrine\Common\Util\Debug::dump($title));
+
+		$request = $this->getRequest();
+		$urlDotPay = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath(). 'app_dev.php/payment/handle';
+		$urlDashBoard = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath(). 'app_dev.php/';
+		
+
 		$data = [
 			'id' => 72890,
-			'kwota' => 150.50,
-			'waluta' => 'PLN',
-			'opis' => 'P³atnoœæ za wypo¿yczenie filmów',
+			'kwota' => $cost,
+			'waluta' => 'USD',
+			'kanal' => 3,
+			'opis' => 'PÅ‚atnoÅ›Ä‡ za wypoÅ¼yczenie: '.$title,
 			'control' => 'WZP0000012',
-			'URLC' => 'http://v-ie.uek.krakow.pl/~s174109/app_dev.php/payment/handle',
-			'firstname' => 'Jakub',
-			'nazwisko' => 'Nazwisko'
+			'URLC' => $urlDotPay,
+			'firstname' => $userFromSession,
+			'nazwisko' => 'Nazwisko',
+			'email' => $mailFromSession,
+			'phone' => $telFromSession, 
+			'URL' => $urlDashBoard,
+			'typ' => 1
 		];
 		
 		$params = http_build_query($data);

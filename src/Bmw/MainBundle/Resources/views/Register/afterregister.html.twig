@@ -1,0 +1,26 @@
+{% extends "BmwMainBundle:Layout:layout.html.twig" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+                      
+				<ol class="breadcrumb">
+  					<center></center>
+				</ol>
+                 {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{msg}}
+                {% endfor %}
+            </div>
+        {% endif %}
+                
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+{% endblock %}

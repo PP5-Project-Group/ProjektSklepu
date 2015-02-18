@@ -7,17 +7,11 @@
 		{% if app.session.flashBag.has('valid') %}
             <div class="alert alert-success">
                 {% for msg in app.session.flashBag.get('valid') %}
-                    {{msg}}
-                {% endfor %}
-            </div>
-        {% endif %}
-        {% if app.session.flashBag.has('login') %}
-            <div class="alert alert-success">
-                {% for msg in app.session.flashBag.get('login') %}
                     {{msg}}<a href=""> tutaj</a>
                 {% endfor %}
             </div>
         {% endif %}
+       
         {% if app.session.flashBag.has('reg') %}
             <div class="alert alert-success">
                 {% for msg in app.session.flashBag.get('reg') %}
@@ -42,9 +36,7 @@
 					</div>
 				</div>
 				<div class="panel-body">
-				 {% if empty %}
-    			<h5>Your shopping cart is empty.</h5>
-				{% endif %}
+				 
 				{% set cart = app.session.get('cart') %}
 				
 				{% for movies in movie %}
@@ -94,9 +86,9 @@
 						<div class="col-xs-3">
 						{% set login = app.session.get('login') %}
 						  {% if login %}
-							<button type="button" class="btn btn-success btn-block">
+							<a href="{{ app.request.uriForPath('/payment/handle') }}"<button type="button" class="btn btn-success btn-block">
 								Checkout
-							</button>
+							</button></a>
 							{% else %}
 								<a href="{{ app.request.uriForPath('/cart/valid') }}"><button type="button" class="btn btn-success btn-block">
 								Checkout
