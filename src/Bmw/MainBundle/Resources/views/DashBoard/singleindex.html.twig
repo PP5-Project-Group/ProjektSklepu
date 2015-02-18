@@ -32,7 +32,7 @@
                                  {% if login %}
                                   <span class="but_rec"><a href="{{ app.request.uriForPath('/movie') }}/{{movie.movieId}}/review"><button type="button" class="btn btn-info">Dodaj recenzje</button></a></span>
                                  {% endif %}                            
-                                <a class="btn btn-success" href="{{ path('add_product_to_cart') }}">Dodaj do koszyka</a>
+                                <a class="btn btn-success" href="{{ app.request.uriForPath('/cart/add') }}/{{movie.movieId}}">Dodaj do koszyka</a>
                                 
                             </div>
                             <div class="ratings">

@@ -33,16 +33,24 @@ class RegisterController extends Controller
    			 $em = $this->getDoctrine()->getManager();
    			 $em->persist($user);
    			 $em->flush();
+
+         $request->getSession()->getFlashBag()
+         ->add('success', 'Konto zostało poprawnie utworzne!!');
 			 
-   			 return $this->redirect($this->generateUrl('user'), 301);
+   			 // return $this->redirect($this->generateUrl('user'), 301);
 			 
 		}
 		
-  		
-        return array(
-				'form' => $form->createView(),
+  if ($request -> getMethod() == 'POST') {		
+        return $this->render('BmwMainBundle:Register:afterregister.html.twig', array(
+        'form' => $form->createView(),
         'title' => 'Rejestracja'
-			);
-		
+      ));
+        
+		}
+    return $this->render('BmwMainBundle:Register:register.html.twig', array(
+        'form' => $form->createView(),
+        'title' => 'Rejestracja'
+      ));
     }
 }

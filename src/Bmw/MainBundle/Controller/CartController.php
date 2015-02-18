@@ -40,7 +40,7 @@ class CartController extends Controller {
 
 	}
 
-	public function addAction(Request $request) {
+	public function addAction(Request $request, $page) {
 
 		//$em = $this -> getDoctrine() -> getEntityManager();
 		//$movie = $em -> findOneBymovieId($page);
@@ -50,7 +50,19 @@ class CartController extends Controller {
 		$id = $session->get('movieId');
 		
 		$session -> set('cart', $id);
-		return $this -> render('BmwMainBundle:Cart:add.html.twig');
+		// return $this -> render('BmwMainBundle:Cart:add.html.twig');
+		
+		 $request->getSession()->getFlashBag()
+         ->add('success', 'Film został dodany do koszyka!!');
+
+         $repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
+		$session = $this -> getRequest() -> getSession();
+         $movie = $repository->findOneBymovieId($page);
+		
+		return $this->render('BmwMainBundle:DashBoard:singleindex.html.twig', array(
+			'movie' => $movie,
+			'page' => 'page'
+			));
 	}
 
 	public function removeAction(Request $request) {

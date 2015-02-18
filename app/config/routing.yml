@@ -29,7 +29,7 @@ movie_review:
     defaults: { _controller: BmwMainBundle:AddReview:addreview }
 
 add_product_to_cart:
-    path: /cart/add
+    path: /cart/add/{page}
     defaults: { _controller: BmwMainBundle:Cart:add}
 
 remove_product_from_cart:
