@@ -25,8 +25,10 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Zamówienia<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="{{ app.request.uriForPath('/cart') }}">Koszyk</a></li>
-          <li><a href="{{ app.request.uriForPath('/history') }}">Hitoria</a></li>
-          <li><a href="{{ app.request.uriForPath('/payment') }}">Płatności</a></li>
+          {% set login = app.session.get('login') %}
+          {% if login %}
+          <li><a href="{{ app.request.uriForPath('/history') }}">Historia</a></li>
+          {% endif %}
  
         </ul>
       </li>

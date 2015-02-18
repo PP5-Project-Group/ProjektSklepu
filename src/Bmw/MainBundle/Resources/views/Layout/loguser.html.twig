@@ -2,21 +2,29 @@
             {% block login %}
              {% set login = app.session.get('login') %}
               <div class="panel panel-default ">
-                <div class="panel-heading"> <strong class="">{{login.username}}-Panel</strong>
+                <div class="panel-heading"> <strong class="">{{login.username}}-UserPanel</strong>
 				
                 </div>
                 <div class="panel-body">
-                 
-                   
+                <div class="col-sm-6 col-md-6">
+                 <img class="img-responsive" src="http://gamebattles.majorleaguegaming.com/cdn/gb/forums/customavatars/avatar2679720_1.gif">
+                
                 </div>
+                        <div class="col-sm-6 col-md-6">
+                  	{% set cart = app.session.get('cart') %}
+                  
+                  Liczba elementów w koszyku : {% if cart>0 %}{{cart}} {%else%} 0 {%endif %}
+                </div>
+                   </div>
+       				<div class="panel-footer">
 					<div class="row">
 					
-					<div class="col-xs-9">
+					<div class="col-xs-12">
 					  <a class="btn btn-success btn-sm" href="{{path('logout')}}">Logout</a>
-           			  
-					  <a class="btn btn-success btn-sm" href="">My orders</a>
+           			  <a class="btn btn-success btn-sm" href="{{ app.request.uriForPath('/cart') }}">Cart</a>
+					  <a class="btn btn-success btn-sm" href="{{ app.request.uriForPath('/history') }}">My orders</a>
 						</div>
-				
+				</div>
 					</div>
                 </div>
 {% endblock %}

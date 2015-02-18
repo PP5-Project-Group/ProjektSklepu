@@ -48,7 +48,7 @@ class AddReviewController extends Controller
 		$review = new Review();
 		$review->setMovie($movie_id);
 		$review->setUser($user_id);
-		 // exit(\Doctrine\Common\Util\Debug::dump($user_id));
+		 //exit(\Doctrine\Common\Util\Debug::dump($user_id));
 		$form = $this->createFormBuilder($review)
 			->add('reviewText', 'text')
 			->add('rate', 'integer')

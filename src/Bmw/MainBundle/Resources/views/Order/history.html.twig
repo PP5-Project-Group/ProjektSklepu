@@ -36,15 +36,18 @@
     </thead>           
     {% for ord in orders %} 
      <tr>
-                        <td>1</td>
+                        <td>{{loop.index}}</td>
                         <td>{{ord.order_data}}</td>
-                        <td>{{ord.movie_price}}</td>
-                        <td>{{ord.order_status}}</td>
+                        <td>{{ord.price}}</td>
+                        {% if ord.order_status == 1 %}
+                        <td>W trakcie</td>
+                        {% else %}
+                        <td>Zapłacono</td>
+                        {% endif %}
                         <td>{{ord.title}}</td>
                         <td>akcja</td>
                     </tr>
                     {% endfor %}
     
 </table>
-<a href="{{path('order_it')}}">sdfsdfsdfsdfsdf </a>
 {%endblock %}
