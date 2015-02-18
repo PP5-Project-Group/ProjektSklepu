@@ -7,14 +7,8 @@
 		{% if app.session.flashBag.has('valid') %}
             <div class="alert alert-success">
                 {% for msg in app.session.flashBag.get('valid') %}
+
                     {{msg}}
-                {% endfor %}
-            </div>
-        {% endif %}
-        {% if app.session.flashBag.has('login') %}
-            <div class="alert alert-success">
-                {% for msg in app.session.flashBag.get('login') %}
-                    {{msg}}<a href=""> tutaj</a>
                 {% endfor %}
             </div>
         {% endif %}

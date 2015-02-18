@@ -21,17 +21,11 @@ class CartController extends Controller {
 		$cart = $session -> get('cart', array());
 
 		If ($cart != '') {
-			//foreach ($cart as $id => $price) {
-			//	$productIds[] = $id;
-		//	}
-			//if (isset($productIds)) {
+
 				
 				$em = $this -> getDoctrine() -> getEntityManager();
 				$movie = $em -> getRepository('BmwMainBundle:Movie') -> findByMovieId($cart);
-		//	} else {
-				//return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('empty' => true, ));
-			//}
-			 
+
 
 
 
@@ -45,15 +39,16 @@ class CartController extends Controller {
 
 	public function addAction(Request $request, $page) {
 
-		//$em = $this -> getDoctrine() -> getEntityManager();
-		//$movie = $em -> findOneBymovieId($page);
+
 		
 		$session = $this -> getRequest() -> getSession();
-		//$cart = $session -> get('cart', array());
-		$id = $session->get('movieId');
+		$cart = $session -> get('cart', array());
+		$id = $session->get('movieId', array());
+
 		
 		$session -> set('cart', $id);
-		// return $this -> render('BmwMainBundle:Cart:add.html.twig');
+		$cartNum = count($cart);
+	    $session -> set('cartNum', $cartNum);
 		
 		 $request->getSession()->getFlashBag()
          ->add('success', 'Film został dodany do koszyka!!');
@@ -72,22 +67,6 @@ class CartController extends Controller {
 
 		$session = $this -> getRequest() -> getSession();
 		$session->remove('cart');
-		//$cart = $session -> get('cart', array());
-		//if (!$cart) { $this -> redirect($this -> generateUrl('cart'));
-		//}
-
-		//if (isset($cart[1])) {
-		//$cart[1] = '0';
-		//unset($cart[1]);
-		//}
-	//	} else {
-	//		$this -> get('session') -> setFlash('notice', 'Go to hell');
-		//	return $this -> redirect($this -> generateUrl('cart'));
-	//	}
-
-	//	$session -> set('cart', $cart);
-
-	//	$this -> get('session') -> setFlash('notice', 'This product is Remove');
 	    return $this -> render('BmwMainBundle:Cart:remove.html.twig',array());
 	}
 
@@ -102,20 +81,14 @@ class CartController extends Controller {
          	
 
 
-         	$session = $this -> getRequest() -> getSession();
+        $session = $this -> getRequest() -> getSession();
 		$cart = $session -> get('cart', array());
 
 		If ($cart != '') {
-			//foreach ($cart as $id => $price) {
-			//	$productIds[] = $id;
-		//	}
-			//if (isset($productIds)) {
-				
+
 				$em = $this -> getDoctrine() -> getEntityManager();
 				$movie = $em -> getRepository('BmwMainBundle:Movie') -> findByMovieId($cart);
-		//	} else {
-				//return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('empty' => true, ));
-			//}
+
 			 
 
 

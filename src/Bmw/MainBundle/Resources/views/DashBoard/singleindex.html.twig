@@ -6,10 +6,11 @@
 
         <div class="row">
             <div class="col-md-8">
-                      
-				<ol class="breadcrumb">
-  					<center>{{movie.title}}</center>
-				</ol>
+                                  <div class="panel panel-default ">
+                <div class="panel-heading"> <strong class=""><center>{{movie.title}}</center></strong>             
+				</div>
+                <div class="panel-body">
+
                  {% if app.session.flashBag.has('success') %}
             <div class="alert alert-success">
                 {% for msg in app.session.flashBag.get('success') %}
@@ -43,7 +44,7 @@
 
                     </div>
                 </div>
-                
+                </div>
             </div>
         </div>
     </div>
