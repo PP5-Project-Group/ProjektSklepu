@@ -34,10 +34,11 @@
                     {% endif %}
                   {% endfor %}
                 </div>
-
+                {% if ordered != "" %}
                 <ol class="breadcrumb">
                     <center>{{ordered}}</center>
                 </ol>
+                {% endif %}
 
                 <div class="row">   
                  {% set zmienna = 8%}

@@ -88,7 +88,9 @@ class DashBoardController extends Controller
 		return $this->render('BmwMainBundle:DashBoard:index.html.twig', array(
 			'title' => 'Kategoria: '.$category,
 			'category' => $category,
-			'movie' => $movie
+			'movie' => $movie,
+			'popular' => '',
+			'ordered' => ''
 			));
 	}
 
