@@ -31,6 +31,9 @@ class CartController extends Controller {
 		//	} else {
 				//return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('empty' => true, ));
 			//}
+			 
+
+
 
 			return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('movie' => $movie, 'empty' => false));
 
@@ -86,6 +89,42 @@ class CartController extends Controller {
 
 	//	$this -> get('session') -> setFlash('notice', 'This product is Remove');
 	    return $this -> render('BmwMainBundle:Cart:remove.html.twig',array());
+	}
+
+	public function validAction(Request $request)
+	{
+		$request->getSession()->getFlashBag()
+         	->add('valid', 'Musisz sie zalogować aby można było złożyć zamówienie!');
+        $request->getSession()->getFlashBag()
+         	->add('login', 'Aby się zalogować kliknij');
+        $request->getSession()->getFlashBag()
+         	->add('reg', 'Jeśli nie posiadasz konta, możesz się zarejestrować klikając');
+         	
+
+
+         	$session = $this -> getRequest() -> getSession();
+		$cart = $session -> get('cart', array());
+
+		If ($cart != '') {
+			//foreach ($cart as $id => $price) {
+			//	$productIds[] = $id;
+		//	}
+			//if (isset($productIds)) {
+				
+				$em = $this -> getDoctrine() -> getEntityManager();
+				$movie = $em -> getRepository('BmwMainBundle:Movie') -> findByMovieId($cart);
+		//	} else {
+				//return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('empty' => true, ));
+			//}
+			 
+
+
+
+			return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('movie' => $movie, 'empty' => false));
+
+		} else {
+			return array('empty' => true);
+		}
 	}
 
 }

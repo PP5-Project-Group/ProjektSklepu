@@ -35,7 +35,7 @@ class RegisterController extends Controller
    			 $em->flush();
 
          $request->getSession()->getFlashBag()
-         ->add('success', 'Konto zostało poprawnie utworzne!!');
+         ->add('success', 'Konto zostało poprawnie utworzne! Możesz teraz się zalogować');
 			 
    			 // return $this->redirect($this->generateUrl('user'), 301);
 			 
@@ -53,4 +53,5 @@ class RegisterController extends Controller
         'title' => 'Rejestracja'
       ));
     }
+
 }

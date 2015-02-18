@@ -4,6 +4,28 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-8">
+		{% if app.session.flashBag.has('valid') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('valid') %}
+                    {{msg}}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if app.session.flashBag.has('login') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('login') %}
+                    {{msg}}<a href=""> tutaj</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if app.session.flashBag.has('reg') %}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('reg') %}
+                    {{msg}}<a href="{{app.request.uriForPath('/register')}}"> tutaj</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="panel-title">
@@ -65,12 +87,21 @@
 				<div class="panel-footer">
 					<div class="row text-center">
 						<div class="col-xs-9">
-							<h4 class="text-right">Total <strong>$50.00</strong></h4>
+						{% for movies in movie %}
+							<h4 class="text-right">Total <strong>{{movies.price}}$</strong></h4>
+						 {% endfor %}
 						</div>
 						<div class="col-xs-3">
+						{% set login = app.session.get('login') %}
+						  {% if login %}
 							<button type="button" class="btn btn-success btn-block">
 								Checkout
 							</button>
+							{% else %}
+								<a href="{{ app.request.uriForPath('/cart/valid') }}"><button type="button" class="btn btn-success btn-block">
+								Checkout
+							</button></a>
+							{% endif %}   
 						</div>
 					</div>
 				</div>

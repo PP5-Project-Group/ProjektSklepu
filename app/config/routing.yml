@@ -35,3 +35,7 @@ add_product_to_cart:
 remove_product_from_cart:
     path: /cart/remove
     defaults: { _controller: BmwMainBundle:Cart:remove}
+
+validation_login_to_by_product:
+    path: /cart/valid
+    defaults: { _controller: BmwMainBundle:Cart:valid}
