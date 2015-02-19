@@ -49,15 +49,15 @@ class DashBoardController extends Controller
 	                   ->getConnection()  
 	                   ->prepare(
 	                   	'SELECT
-	                   	 title, price, img_url, description, Movie.movie_id, SUM( Review.movie_id) Suma, COUNT(title) Count 
+	                   	  title, price, img_url, description, Movie.movie_id, COUNT(title) Count 
 	                   	FROM 
-	                   	 Review LEFT JOIN Movie 
+	                   	  Movie Inner Join Morder_has_Movie
 	                   	ON
-	                   	 Review.movie_id = Movie.movie_id
-	                   	 GROUP BY 
+	                   	  Movie.movie_id = Morder_has_Movie.movie_id
+	                   	GROUP BY 
 	                   	title
-	                   	 ORDER BY
-	                   	Count DESC
+	                   	ORDER BY
+	                   	 Count DESC
 	                   	LIMIT 3'
 	                   	);  
 	      
