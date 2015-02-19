@@ -19,6 +19,7 @@ class DashBoardController extends Controller
     	     	
      	$category = 'Most Popular';
 		$category2 = 'Most Ordered';
+		$flaga = '';
 		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');		
 		$movie = $repository->findByPrice(6.99);
 
@@ -44,7 +45,7 @@ class DashBoardController extends Controller
 	      
 	      $stmt->execute();  
 	      $mostPopular =  $stmt->fetchAll();  
-		  
+
 		  $stmy = $this->getDoctrine()->getManager()  
 	                   ->getConnection()  
 	                   ->prepare(
@@ -70,6 +71,7 @@ class DashBoardController extends Controller
 	    	'movie' => $movie,
 	    	'category' => $category,
 			'category2' => $category2,
+			'flaga' => $flaga,
 	    	'title' => 'DashBoard',
 	    	'popular' => $mostPopular,
 	    	'ordered' => $mostOrdered
@@ -84,6 +86,8 @@ class DashBoardController extends Controller
 		$repository = $this->getDoctrine()->getRepository('BmwMainBundle:Movie');
 		
 		$category = '';
+		$category2 = '';
+		$flaga = '1';
 		if ($type == 'action'){
 			$type = 1;
 			$category = 'Akcji';
@@ -109,6 +113,8 @@ class DashBoardController extends Controller
 		return $this->render('BmwMainBundle:DashBoard:index.html.twig', array(
 			'title' => 'Kategoria: '.$category,
 			'category' => $category,
+			'category2' => $category2,
+			'flaga' => $flaga,
 			'movie' => $movie,
 			'popular' => '',
 			'ordered' => ''

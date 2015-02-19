@@ -37,10 +37,12 @@
                   {% endif %}
                   </div>
                 </div>
+				{% if ordered != "" %}
              <div class="panel panel-default ">
 				<div class="panel-heading"> <strong class=""><center>{{category2}}</center></strong>             
 				</div>
                 <div class="panel-body">
+				{% endif %}
                 <div class="row">   
                  {% set zmienna = 8%}
                  {% for pop in ordered %}                 
@@ -67,8 +69,36 @@
                   </div>
                   {% endif %}
                   </div>
+				  {% if flaga == "1" %}
+				  <div class="row">   
+                 {% set zmienna = 8%}
+                 {% for pop in movie %}                 
+                    <div class="col-sm-4 col-lg-4 col-md-8">
+                        <div class="thumbnail">
+                           
+                            <a href="{{ app.request.uriForPath('/movie/') }}{{pop.movieId}}"><img src="{{pop.imgUrl}}" width="203" height="301" alt=""></a>
+                            <div class="caption">
+                                <h4 class="pull-right">{{ pop.price}}$</h4>
+                                <h4><a href="{{ app.request.uriForPath('/movie/') }}{{pop.movieId}}">{{ pop.title }}</a>
+                                </h4>
+                                <p>{{pop.description}}</p>
+                            </div>
+                            <div class="ratings">
+                            </div>
+                        </div>
+
+                    </div>
+                    {% if loop.index is divisibleby(3) %}
+                        </div><div class="row">
+                    {% endif %}
+                  {% endfor %}
+                  {% if category2 == "Most Ordered" %}
+                  </div>
+                  {% endif %}
+                  </div>
                 </div>
 				</div>
+				{% endif %}
            
              </div>
              </div>
