@@ -37,26 +37,22 @@
                   {% endif %}
                   </div>
                 </div>
-                 {% if ordered != "" %}
-                <div class="panel panel-default ">
-                <div class="panel-heading"> <strong class=""><center>{{ordered}}</center></strong>             
+                 
+				<div class="panel-heading"> <strong class=""><center>{{category2}}</center></strong>             
 				</div>
                 <div class="panel-body">
-         
-                {% endif %}
-
                 <div class="row">   
                  {% set zmienna = 8%}
-                 {% for movies in movie %}                 
+                 {% for pop in ordered %}                 
                     <div class="col-sm-4 col-lg-4 col-md-8">
                         <div class="thumbnail">
                            
-                            <a href="{{ app.request.uriForPath('/movie/') }}{{movies.movieId}}"><img src="{{movies.imgUrl}}" width="203" height="301" alt=""></a>
+                            <a href="{{ app.request.uriForPath('/movie/') }}{{pop.movie_id}}"><img src="{{pop.img_url}}" width="203" height="301" alt=""></a>
                             <div class="caption">
-                                <h4 class="pull-right">{{ movies.price}}$</h4>
-                                <h4><a href="{{ app.request.uriForPath('/movie/') }}{{movies.movieId}}">{{ movies.title }}</a>
+                                <h4 class="pull-right">{{ pop.price}}$</h4>
+                                <h4><a href="{{ app.request.uriForPath('/movie/') }}{{pop.movie_id}}">{{ pop.title }}</a>
                                 </h4>
-                                <p>{{movies.description}}</p>
+                                <p>{{pop.description}}</p>
                             </div>
                             <div class="ratings">
                             </div>
@@ -67,6 +63,10 @@
                         </div><div class="row">
                     {% endif %}
                   {% endfor %}
+                  {% if category2 == "Most Ordered" %}
+                  </div>
+                  {% endif %}
+                  </div>
                 </div>
            
              </div>
