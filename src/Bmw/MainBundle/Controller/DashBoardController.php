@@ -5,6 +5,7 @@ namespace Bmw\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 class DashBoardController extends Controller
 {
@@ -14,7 +15,7 @@ class DashBoardController extends Controller
      */
    	
 
-    public function indexAction()
+    public function indexAction(Request $request)
     {
     	     	
      	$category = 'Most Popular';
@@ -24,9 +25,21 @@ class DashBoardController extends Controller
 		$movie = $repository->findByPrice(6.99);
 
 		// $repository = $this->getDoctrine()->getRepository('BmwMainBundle:Review');
+		$value = '';
+		$session = $request -> getSession('cart'); 
+		if ($request -> getMethod() == 'POST') 
+		{
+			$cart = $session->remove('cart');
+
+			$value = $request->getSession()->getFlashBag()
+   			 ->add('success', 'Tranzakcja przebiegła pomyślnie!');
+			
+		}
+		
 		
 		  
-  
+  	 // exit(\Doctrine\Common\Util\Debug::dump($session));
+
 	      $stmt = $this->getDoctrine()->getManager()  
 	                   ->getConnection()  
 	                   ->prepare(

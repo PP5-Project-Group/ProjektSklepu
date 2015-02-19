@@ -59,7 +59,7 @@ class PaymentController extends Controller
 
 		$request = $this->getRequest();
 		$urlDotPay = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath(). 'app_dev.php/payment/handle';
-		$urlDashBoard = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath(). 'app_dev.php/';
+		$urlDashBoard = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath(). '/app_dev.php/';
 		
 
 		$data = [
@@ -75,7 +75,7 @@ class PaymentController extends Controller
 			'email' => $mailFromSession,
 			'phone' => $telFromSession, 
 			'URL' => $urlDashBoard,
-			'typ' => 1
+			'typ' => 3
 		];
 		
 		$params = http_build_query($data);
