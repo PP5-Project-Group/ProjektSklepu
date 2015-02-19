@@ -29,8 +29,9 @@ class DashBoardController extends Controller
 		$session = $request -> getSession('cart'); 
 		if ($request -> getMethod() == 'POST') 
 		{
+			
 			$cart = $session->remove('cart');
-
+			
 			$value = $request->getSession()->getFlashBag()
    			 ->add('success', 'Tranzakcja przebiegła pomyślnie!');
 			
