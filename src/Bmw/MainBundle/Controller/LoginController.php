@@ -37,8 +37,9 @@ class LoginController extends Controller {
 				
 				return $this -> render('BmwMainBundle:Login:welcome.html.twig', array('name' => $user -> getLogin()));
 			} else {
-
-				//return $this -> render('BmwMainBundle:Login:login.html.twig', array('name' => "LOGIN ERROR"));
+				 $request->getSession()->getFlashBag()
+   			    ->add('error', 'Podałeś błędne dane');
+				return $this -> render('BmwMainBundle:Login:welcome.html.twig');
 
 			}
 		} else {
@@ -60,7 +61,7 @@ class LoginController extends Controller {
 	
 	public function logoutAction(Request $request) {
 		$session = $this -> getRequest() -> getSession();
-		$session -> clear(); //czysci koszyk
+		$session -> remove('login');
 		return $this -> render('BmwMainBundle:Login:goodbye.html.twig');
 	}
 

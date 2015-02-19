@@ -2,9 +2,17 @@
 {% block title %}ELO{% endblock %}
 {% block content %}
         <div class="row">
-            <div class="col-md-8">
+                     <div class="col-md-8">
+                                       {% if app.session.flashBag.has('error') %}
+            <div class="alert alert-danger">
+                {% for msg in app.session.flashBag.get('error') %}
+                   <center>{{ msg }} </center>
+                {% endfor %}
+            </div>
+            {% endif %}
+           
             <div class="panel panel-default ">
-                <div class="panel-heading"> <strong class=""><center>Welcome {{name}}</center></strong>             
+                <div class="panel-heading"> <strong class=""><center>Welcome</center></strong>             
 				</div>
 
                 </div>

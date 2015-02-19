@@ -64,7 +64,14 @@ class CartController extends Controller {
 
 		$session = $this -> getRequest() -> getSession();
 		$session->remove('cart');
-	    return $this -> render('BmwMainBundle:Cart:remove.html.twig',array());
+		$cart = $session -> get('cart');
+	    $em = $this -> getDoctrine() -> getEntityManager();
+		$movie = $em -> getRepository('BmwMainBundle:Movie') -> findByMovieId($cart);
+			$request->getSession()->getFlashBag()
+         	->add('valid', 'Usunięto film z koszyka');
+
+		return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('movie' => $movie, 'empty' => false));
+	  
 	}
 
 	public function validAction(Request $request)
