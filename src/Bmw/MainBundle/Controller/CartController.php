@@ -27,8 +27,6 @@ class CartController extends Controller {
 				$movie = $em -> getRepository('BmwMainBundle:Movie') -> findByMovieId($cart);
 
 
-
-
 			return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('movie' => $movie, 'empty' => false));
 
 		} else {
@@ -42,13 +40,12 @@ class CartController extends Controller {
 
 		
 		$session = $this -> getRequest() -> getSession();
-		$cart = $session -> get('cart', array());
+		//$cart = $session -> get('cart', array());
 		$id = $session->get('movieId', array());
 
 		
 		$session -> set('cart', $id);
-		$cartNum = count($cart);
-	    $session -> set('cartNum', $cartNum);
+
 		
 		 $request->getSession()->getFlashBag()
          ->add('success', 'Film został dodany do koszyka!!');
@@ -75,11 +72,8 @@ class CartController extends Controller {
 		$request->getSession()->getFlashBag()
          	->add('valid', 'Musisz sie zalogować aby można było złożyć zamówienie!');
         $request->getSession()->getFlashBag()
-         	->add('login', 'Aby się zalogować kliknij');
-        $request->getSession()->getFlashBag()
          	->add('reg', 'Jeśli nie posiadasz konta, możesz się zarejestrować klikając');
          	
-
 
         $session = $this -> getRequest() -> getSession();
 		$cart = $session -> get('cart', array());
@@ -88,10 +82,6 @@ class CartController extends Controller {
 
 				$em = $this -> getDoctrine() -> getEntityManager();
 				$movie = $em -> getRepository('BmwMainBundle:Movie') -> findByMovieId($cart);
-
-			 
-
-
 
 			return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('movie' => $movie, 'empty' => false));
 

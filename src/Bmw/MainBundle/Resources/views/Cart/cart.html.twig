@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-xs-8">
 		{% if app.session.flashBag.has('valid') %}
-            <div class="alert alert-success">
+            <div class="alert alert-danger">
                 {% for msg in app.session.flashBag.get('valid') %}
 
                     {{msg}}
@@ -16,6 +16,13 @@
             <div class="alert alert-success">
                 {% for msg in app.session.flashBag.get('reg') %}
                     {{msg}}<a href="{{app.request.uriForPath('/register')}}"> tutaj</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+                {% if app.session.flashBag.has('pusty') %}
+            <div class="alert alert-danger">
+                {% for msg in app.session.flashBag.get('pusty') %}
+                    {{msg}}
                 {% endfor %}
             </div>
         {% endif %}

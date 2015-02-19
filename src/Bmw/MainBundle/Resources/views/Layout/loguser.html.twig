@@ -11,9 +11,9 @@
                 
                 </div>
                         <div class="col-sm-6 col-md-6">
-                  	{% set cart = app.session.get('cartNum') %}
+                  	{% set cart = app.session.get('cart') %}
                   
-                  Liczba elementów w koszyku : {% if cart>0 %}{{cart}} {%else%} 0 {%endif %}
+                  Liczba elementów w koszyku : {% if cart>0 %}1 {%else%} 0 {%endif %}
                 </div>
                    </div>
        				<div class="panel-footer">

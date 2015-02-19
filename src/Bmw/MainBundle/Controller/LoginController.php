@@ -23,19 +23,19 @@ class LoginController extends Controller {
 
 			$username = $request -> get('username');
 			$password = $request -> get('password');
-			$remember = $request -> get('remember');
+			
 
 			$user = $repository -> findOneBy(array('login' => $username, 'userPassword' => $password));
 
 			if ($user) {
-				if ($remember == 'remember-me') {
+				
 					$login = new Login();
 					$login -> setUsername($username);
 					$login -> setPassword($password);
 					$session -> set('login', $login);
 					
-				}
-				return $this -> render('BmwMainBundle:Cart:cart.html.twig', array('name' => $user -> getLogin()));
+				
+				return $this -> render('BmwMainBundle:Login:welcome.html.twig', array('name' => $user -> getLogin()));
 			} else {
 
 				//return $this -> render('BmwMainBundle:Login:login.html.twig', array('name' => "LOGIN ERROR"));

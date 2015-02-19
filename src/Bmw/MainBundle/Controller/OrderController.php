@@ -45,9 +45,22 @@ class OrderController extends Controller {
 
 
 	public function orderAction(Request $request){
+		 	
+			$session = $this -> getRequest() -> getSession();
+			$cart= $session->get('cart');
+		 
+		 if($cart == ''){
+			 
+			  $request->getSession()->getFlashBag()
+         	->add('pusty', 'Koszyk jest pusty');
+			$em = $this -> getDoctrine() -> getEntityManager();
+				$movie = $em -> getRepository('BmwMainBundle:Movie') -> findByMovieId($cart);
+			return $this -> render('BmwMainBundle:Cart:cart.html.twig',array('movie' => $movie, 'empty' => true));
+		}
+			
 			
 		$order = new Morder();
-		$session = $this -> getRequest() -> getSession();
+		
 		
 		$order->setOrderStatus(1);
 		
@@ -77,7 +90,7 @@ class OrderController extends Controller {
 		
 		$ohm = new MorderHasMovie();
 		$ohm->setOrder($order);
-		$cart= $session->get('cart');
+		
 		$movie_id = $em->getRepository('BmwMainBundle:Movie')->find($cart);
 		$ohm->setMovie($movie_id);
 		
@@ -86,7 +99,6 @@ class OrderController extends Controller {
 		
 		$session->remove('cart');
 		
-		     $request->getSession()->getFlashBag()
-         	->add('reg', 'Jeśli nie posiadasz konta, możesz się zarejestrować klikając');
+		   return $this->redirect($this->generateUrl('pay_action_controler'));
 	}
 }
